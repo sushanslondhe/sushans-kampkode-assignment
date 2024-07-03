@@ -15,7 +15,7 @@ import { RiFlutterFill } from "react-icons/ri";
 
 export default function Hero() {
   return (
-    <div className=" w-[1423px] h-[1453px]  flex justify-center items-center">
+    <div className=" w-[1423px] h-[1453px] max-md:w-[750px] max-sm:w-[480px] max-sm:h-[1000px]  flex justify-center items-center">
       {/* hero */}
       <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg bg-background">
         {/* content */}
@@ -28,6 +28,9 @@ export default function Hero() {
             </h1>
 
             <h4 className="text-sm font-medium text-[#475467]">
+              <span className=" font-bold">
+                We’ve just released a new update!
+              </span>
               Check out the all new dashboard view. Pages and now load
               faster.you can try us for free for 30 days.
               <br />
@@ -36,18 +39,18 @@ export default function Hero() {
           </div>
 
           {/* cta btns  */}
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2 max-sm:flex-col-reverse  ">
             <Button
               variant="outline"
               size="lg"
-              className="flex gap-2 text-lg font-semibold text-[#344054] shadow"
+              className="flex gap-2 text-lg font-semibold text-[#344054] shadow max-sm:w-[90%]"
             >
               <ArrowRight width={20} height={20} />
               Start Learning Today
             </Button>
             <Button
               size="lg"
-              className="text-lg font-semibold bg-[#7F6EFC] text-white hover:bg-purple-600 transition-all"
+              className=" max-sm:w-[90%] text-lg font-semibold bg-[#7F6EFC] text-white hover:bg-purple-600 transition-all"
             >
               Join Now
             </Button>
