@@ -15,7 +15,7 @@ import { RiFlutterFill } from "react-icons/ri";
 
 export default function Hero() {
   return (
-    <div className=" w-[1423px] h-[1453px] max-md:w-[750px] max-sm:w-[480px] max-sm:h-[1000px]  flex justify-center items-center">
+    <div className=" h-[120vh] max-md:w-[750px] max-sm:w-[480px] max-sm:h-[1000px]  flex justify-center items-center">
       {/* hero */}
       <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg bg-background">
         {/* content */}
