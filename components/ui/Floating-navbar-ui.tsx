@@ -8,6 +8,15 @@ import {
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ChevronDown, Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./sheet";
 
 export const FloatingNav = ({
   navItems,
@@ -25,7 +34,6 @@ export const FloatingNav = ({
   const [visible, setVisible] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
 
@@ -56,26 +64,91 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex max-w-fit  fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2  items-center justify-center space-x-4",
-          className
+          (className =
+            " z-40 fixed top-5 flex items-center inset-x-0 md:mx-10 px-[40px] py-4 justify-between bg-white bg-opacity-90 backdrop-blur-sm rounded-[20px] md:shadow-navbar")
         )}
       >
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-            )}
-          >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="hidden sm:block text-sm">{navItem.name}</span>
-          </Link>
-        ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button>
+        <div className="text-2xl font-medium">
+          <div className="flex">
+            <span className="text-[#7F6EFC]">N</span>
+            AV
+            <div className="hidden md:block">
+              <span className="text-[#7F6EFC]">B</span>
+              AR
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-10">
+          {navItems.map((navItem: any, idx: number) => (
+            <Link
+              key={`link=${idx}`}
+              href={navItem.link}
+              className={cn(
+                "relative hidden lg:flex items-center gap-1 text-lg font-medium hover:text-gray-700 transition-all"
+              )}
+            >
+              <span className="">{navItem.name}</span>
+              <div>
+                {navItem.dropdown && <ChevronDown className="w-4 h-4" />}
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* cta btns */}
+        <div className="transition-all">
+          <div className="z-[5000] flex md:hidden transition-all">
+            <Sheet>
+              <SheetTrigger>
+                <Menu />
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle></SheetTitle>
+                  <SheetDescription>
+                    <div className="flex flex-col">
+                      {/* login and signup btns */}
+                      <div className="flex gap-4 transition-all">
+                        <button className="px-4 py-2 bg-[#F9F5FF] border border-[#E9D7FE] text-[#6941C6] font-semibold rounded-[8px] shadow-ctabtn hover:bg-purple-100 transition-all">
+                          Login
+                        </button>
+                        <button className="px-4 py-2 rounded-[8px] text-white font-semibold bg-[#7F56D9] border border-[#7F56D9] shadow-ctabtn hover:bg-purple-700 transition-all">
+                          Sign Up
+                        </button>
+                      </div>
+
+                      {/* nav links */}
+                      <div className="mt-10 flex flex-col gap-4 text-xl">
+                        {navItems.map((link, index) => (
+                          <Link
+                            key={index}
+                            href={link.link}
+                            className="flex items-center gap-1 font-medium hover:text-gray-700 transition-all"
+                          >
+                            <span className="">{link.name}</span>
+                            <div>
+                              {link && <ChevronDown className="w-4 h-4" />}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </SheetDescription>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          <div className="hidden md:flex gap-4 transition-all">
+            <button className="px-4 py-2 bg-[#F9F5FF] border border-[#E9D7FE] text-[#6941C6] font-semibold rounded-[8px] shadow-ctabtn hover:bg-purple-100 transition-all">
+              Login
+            </button>
+            <button className="px-4 py-2 rounded-[8px] text-white font-semibold bg-[#7F56D9] border border-[#7F56D9] shadow-ctabtn hover:bg-purple-700 transition-all">
+              Sign Up
+            </button>
+          </div>
+        </div>
       </motion.div>
     </AnimatePresence>
   );
