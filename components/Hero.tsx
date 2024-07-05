@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="h-full z-50 flex flex-col justify-center gap-10">
           {/* heading  */}
           <div className="flex flex-col gap-6 justify-center text-center">
-            <h1 className="text-6xl font-semibold text-[#101828]">
+            <h1 className="md:text-6xl text-3xl font-semibold text-[#101828]">
               We&apos;ve really sped up our workflow
             </h1>
 
