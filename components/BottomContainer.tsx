@@ -52,7 +52,7 @@ export default function BottomContainer() {
   ];
 
   return (
-    <div className="border relative  w-full h-[807px]">
+    <div className="">
       <StickyScroll content={content} />
     </div>
   );
